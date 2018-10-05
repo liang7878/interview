@@ -1,0 +1,5 @@
+// line comment
+// line comment2
+int main() {
+    return 0;
+}
