@@ -9,24 +9,41 @@ public class Solution {
     }
 
     public int firstUniqChar(String s) {
-        HashMap<Character, Integer> map = new HashMap<>();
+        boolean [] table = new boolean[256];
 
-        char [] arr = s.toCharArray();
+        char [] a = s.toCharArray();
 
-        if(arr.length == 0) return -1;
+        int index = -1;
 
-        for(char c: arr) {
-            map.computeIfAbsent(c, k -> 0);
-
-            map.put(c, map.get(c) + 1);
+        for (int i = a.length-1; i >= 0 ; i--) {
+            if(!table[a[i]]) {
+                index = i;
+                table[a[i]] = true;
+            }
         }
 
-        int index = 0;
-
-        for(char c: arr) {
-            if(map.get(c) == 1) return index;
-            index++;
-        }
-        return 0;
+        return index;
     }
+
+//    public int firstUniqChar(String s) {
+//        HashMap<Character, Integer> map = new HashMap<>();
+//
+//        char [] arr = s.toCharArray();
+//
+//        if(arr.length == 0) return -1;
+//
+//        for(char c: arr) {
+//            map.computeIfAbsent(c, k -> 0);
+//
+//            map.put(c, map.get(c) + 1);
+//        }
+//
+//        int index = 0;
+//
+//        for(char c: arr) {
+//            if(map.get(c) == 1) return index;
+//            index++;
+//        }
+//        return 0;
+//    }
 }
